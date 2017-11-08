@@ -77,49 +77,12 @@ router.get('/:account', function(req, res, next) {
       }
 
 
-    }, function(callback) {
-      web3.trace.filter({ "fromBlock": "0x" + data.fromBlock.toString(16), "fromAddress": [ req.params.account ] }, function(err, traces) {
-        callback(err, traces);
-      });
-    }, function(tracesSent, callback) {
-      data.tracesSent = tracesSent;
-      web3.trace.filter({ "fromBlock": "0x" + data.fromBlock.toString(16), "toAddress": [ req.params.account ] }, function(err, traces) {
-        callback(err, traces);
-      });
-    }
-  ], function(err, tracesReceived) {
+    }], function(err) {
     if (err) {
       return next(err);
     }
 
     data.address = req.params.account;
-    data.tracesReceived = tracesReceived;
-
-    var blocks = {};
-    data.tracesSent.forEach(function(trace) {
-      if (!blocks[trace.blockNumber]) {
-        blocks[trace.blockNumber] = [];
-      }
-
-      blocks[trace.blockNumber].push(trace);
-    });
-    data.tracesReceived.forEach(function(trace) {
-      if (!blocks[trace.blockNumber]) {
-        blocks[trace.blockNumber] = [];
-      }
-
-      blocks[trace.blockNumber].push(trace);
-    });
-
-    data.tracesSent = null;
-    data.tracesReceived = null;
-
-    data.blocks = [];
-    var txCounter = 0;
-    for (var block in blocks) {
-      data.blocks.push(blocks[block]);
-      txCounter++;
-    }
 
     if (data.source) {
       data.name = data.source.name;
@@ -127,7 +90,6 @@ router.get('/:account', function(req, res, next) {
       data.name = config.names[data.address];
     }
 
-    data.blocks = data.blocks.reverse().splice(0, 100);
     res.render('account', { account: data });
   });
 

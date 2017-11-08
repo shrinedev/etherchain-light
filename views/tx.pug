@@ -18,12 +18,12 @@ block content
     tr
       td From:
       td
-        #{nameformatter.format(tx.from)}
+        a(href="/account/" + tx.from) #{nameformatter.format(tx.from)}
     tr
       td To:
       td
         if tx.to
-          #{nameformatter.format(tx.to)}
+          a(href="/account/" + tx.to) #{nameformatter.format(tx.to)}
         else
           | New Contract
     tr
