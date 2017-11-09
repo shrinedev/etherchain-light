@@ -1,0 +1,9 @@
+version: '2'
+
+services:
+  explorer:
+    build: .
+    image: explorer
+    ports:
+      - "3000:3000"
+    command: ["npm", "start"]

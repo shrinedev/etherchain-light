@@ -1,0 +1,15 @@
+version: '2'
+
+services:
+  explorer:
+    build: .
+    image: explorer
+    ports:
+      - "3000:3000"
+    command: ["npm", "start"]
+    volumes:
+     - ./views:/explorer/views
+     - ./public:/explorer/public
+     - ./utils:/explorer/utils
+     - ./data:/explorer/data
+     - ./routes:/explorer/routes
