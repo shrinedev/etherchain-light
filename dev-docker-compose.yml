@@ -13,3 +13,8 @@ services:
      - ./utils:/explorer/utils
      - ./data:/explorer/data
      - ./routes:/explorer/routes
+     - data-volume:/data-volume
+
+volumes:
+  data-volume:
+    external: true
