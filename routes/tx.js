@@ -70,9 +70,13 @@ router.get('/:tx', function(req, res, next) {
         callback(err, result);
       });
     }, function(tx, callback) {
-      db.get(tx.to, function(err, value) {
-        callback(null, tx, value);
-      });
+      if(tx.to){
+        db.get(tx.to, function(err, value) {
+          callback(null, tx, value);
+        });
+      } else {
+        callback(null, tx, null);
+      }
     }
   ], function(err, tx, source) {
     if (err) {
