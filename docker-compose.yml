@@ -1,4 +1,4 @@
-version: '2'
+version: '3.2'
 
 services:
   explorer:
@@ -9,6 +9,15 @@ services:
     command: ["npm", "start"]
     volumes:
       - data-volume:/data-volume
+  # ticketledger:
+  #   build:
+  #     context: ../passage-network-hapi-react/packages/passagex-ticketledger
+  #   image: passagex/ticketledger
+  #   ports:
+  #     - "8545:8545"
+  #     - "30303:30303"
+  #   volumes:
+  #     - data-volume:/data-volume
 
 volumes:
    data-volume:
