@@ -47,7 +47,6 @@ router.get('/', function(req, res, next) {
         txs.push(tx);
       });
     });
-    console.log("blocks", blocks);
     res.render('index', { blocks: blocks, txs: txs });
   });
 

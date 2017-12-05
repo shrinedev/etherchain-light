@@ -165,12 +165,11 @@ router.get('/:tx', function(req, res, next) {
     tx.gasUsed = 0;
     tx.parsedInput = decoder.decodeData(tx.input);
 
-    // blockchain
-    tx.parsedInput.inputs[0] = abi.rawDecode(['bytes32'], tx.parsedInput.inputs[0]).toString().replace(/\u0000/g, '');
-    // action
-    tx.parsedInput.inputs[1] = abi.rawDecode(['bytes32'], tx.parsedInput.inputs[1]).toString().replace(/\u0000/g, '');
-    // xid
-    tx.parsedInput.inputs[2] = abi.rawDecode(['bytes32'], tx.parsedInput.inputs[2]).toString().replace(/\u0000/g, '');
+    tx.parsedInput.types.forEach(function(type, index) {
+      if(type === 'bytes32'){
+        tx.parsedInput.inputs[index] = abi.rawDecode(['bytes32'], tx.parsedInput.inputs[index]).toString().replace(/\u0000/g, '');
+      }
+    });
 
     res.render('tx', { tx: tx });
   });
