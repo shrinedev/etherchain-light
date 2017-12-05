@@ -86,8 +86,6 @@ router.get('/:account', function(req, res, next) {
 
     if (data.source) {
       data.name = data.source.name;
-    } else if (config.names[data.address]) {
-      data.name = config.names[data.address];
     }
 
     res.render('account', { account: data });

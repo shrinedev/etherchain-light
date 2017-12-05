@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "nodemon --watch routes --watch utils ./bin/www"
   },
   "engines": {
     "node": "^8.6.0",
@@ -15,12 +15,14 @@
     "body-parser": "~1.16.0",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.0",
+    "ethereum-input-data-decoder": "0.0.3",
     "ethereumjs-abi": "git+https://github.com/gobitfly/ethereumjs-abi.git",
     "ethereumjs-util": "^5.1.1",
     "express": "~4.14.1",
     "level": "2.0.0",
     "moment": "^2.17.1",
     "morgan": "~1.7.0",
+    "nodemon": "^1.12.4",
     "numeral": "^2.0.4",
     "pug": "~2.0.0-beta10",
     "serve-favicon": "~2.3.2",

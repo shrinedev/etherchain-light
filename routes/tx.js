@@ -5,6 +5,48 @@ var async = require('async');
 var Web3 = require('web3');
 var abi = require('ethereumjs-abi');
 
+const InputDataDecoder = require('ethereum-input-data-decoder');
+const decoder = new InputDataDecoder(__dirname+'/../utils/abi.json');
+
+const abiJson = {
+  "constant": false,
+  "inputs": [
+    {
+      "name": "blockchain",
+      "type": "bytes32"
+    },
+    {
+      "name": "action",
+      "type": "bytes32"
+    },
+    {
+      "name": "ticketXid",
+      "type": "bytes32"
+    },
+    {
+      "name": "bearer",
+      "type": "address"
+    },
+    {
+      "name": "transactionInfo",
+      "type": "string"
+    },
+    {
+      "name": "ticketInfo",
+      "type": "string"
+    }
+  ],
+  "name": "submitTicketTransaction",
+  "outputs": [
+    {
+      "name": "",
+      "type": "bool"
+    }
+  ],
+  "payable": false,
+  "stateMutability": "nonpayable",
+  "type": "function"
+};
 
 router.get('/pending', function(req, res, next) {
 
@@ -121,6 +163,14 @@ router.get('/:tx', function(req, res, next) {
     }
     tx.failed = false;
     tx.gasUsed = 0;
+    tx.parsedInput = decoder.decodeData(tx.input);
+
+    // blockchain
+    tx.parsedInput.inputs[0] = abi.rawDecode(['bytes32'], tx.parsedInput.inputs[0]).toString().replace(/\u0000/g, '');
+    // action
+    tx.parsedInput.inputs[1] = abi.rawDecode(['bytes32'], tx.parsedInput.inputs[1]).toString().replace(/\u0000/g, '');
+    // xid
+    tx.parsedInput.inputs[2] = abi.rawDecode(['bytes32'], tx.parsedInput.inputs[2]).toString().replace(/\u0000/g, '');
 
     res.render('tx', { tx: tx });
   });

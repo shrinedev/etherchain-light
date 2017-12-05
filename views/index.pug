@@ -15,8 +15,7 @@ block content
         tr
           td
             a(href="/block/" + block.number) #{block.number}
-          td 
-            #{nameformatter.format(block.author)}
+          td #{nameformatter.format(block.miner)}
           td #{moment.unix(block.timestamp).format()}
           td #{block.transactions.length}
           td #{block.uncles.length}
@@ -38,7 +37,7 @@ block content
               a(href="/tx/" + tx.hash) #{tx.hash.substr(0,10)}...
             td
               a(href="/account/" + tx.from) #{nameformatter.format(tx.from)}
-            td
+            td 
               if tx.to
                 a(href="/account/" + tx.to) #{nameformatter.format(tx.to)}
               else

@@ -13,6 +13,4 @@ RUN cd /explorer/ \
 
 WORKDIR /explorer/
 
-EXPOSE 3000
-
 CMD ["npm","start"]
