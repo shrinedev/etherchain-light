@@ -165,11 +165,13 @@ router.get('/:tx', function(req, res, next) {
     tx.gasUsed = 0;
     tx.parsedInput = decoder.decodeData(tx.input);
 
-    tx.parsedInput.types.forEach(function(type, index) {
-      if(type === 'bytes32'){
-        tx.parsedInput.inputs[index] = abi.rawDecode(['bytes32'], tx.parsedInput.inputs[index]).toString().replace(/\u0000/g, '');
-      }
-    });
+    if(tx.parsedInput.types){
+      tx.parsedInput.types.forEach(function(type, index) {
+        if(type === 'bytes32'){
+          tx.parsedInput.inputs[index] = abi.rawDecode(['bytes32'], tx.parsedInput.inputs[index]).toString().replace(/\u0000/g, '');
+        }
+      });
+    }
 
     res.render('tx', { tx: tx });
   });

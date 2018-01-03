@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon --watch routes --watch utils ./bin/www"
+    "dev-start": "nodemon --watch routes --watch utils ./bin/www",
+    "start": "node ./bin/www"
   },
   "engines": {
     "node": "^8.6.0",
