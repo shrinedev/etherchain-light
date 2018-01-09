@@ -46,6 +46,49 @@
       "type": "function"
     },
     {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "blockchain",
+          "type": "bytes32"
+        },
+        {
+          "name": "action",
+          "type": "bytes32"
+        },
+        {
+          "name": "ticketXid",
+          "type": "bytes32"
+        },
+        {
+          "name": "bearer",
+          "type": "address"
+        },
+        {
+          "name": "transactionInfo",
+          "type": "string"
+        },
+        {
+          "name": "ticketInfo",
+          "type": "string"
+        },
+        {
+          "name": "txnDate",
+          "type": "uint256"
+        }
+      ],
+      "name": "submitTicketTransaction",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
       "constant": true,
       "inputs": [
         {
@@ -117,6 +160,14 @@
         {
           "name": "",
           "type": "string"
+        },
+        {
+          "name": "",
+          "type": "bool"
+        },
+        {
+          "name": "",
+          "type": "uint256"
         }
       ],
       "payable": false,
@@ -183,42 +234,22 @@
       "type": "function"
     },
     {
-      "constant": false,
+      "constant": true,
       "inputs": [
-        {
-          "name": "blockchain",
-          "type": "bytes32"
-        },
-        {
-          "name": "action",
-          "type": "bytes32"
-        },
         {
           "name": "ticketXid",
           "type": "bytes32"
-        },
-        {
-          "name": "bearer",
-          "type": "address"
-        },
-        {
-          "name": "transactionInfo",
-          "type": "string"
-        },
-        {
-          "name": "ticketInfo",
-          "type": "string"
         }
       ],
-      "name": "submitTicketTransaction",
+      "name": "getTicketLastTxnDate",
       "outputs": [
         {
           "name": "",
-          "type": "bool"
+          "type": "uint256"
         }
       ],
       "payable": false,
-      "stateMutability": "nonpayable",
+      "stateMutability": "view",
       "type": "function"
     },
     {
@@ -257,37 +288,6 @@
       ],
       "payable": false,
       "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "constant": false,
-      "inputs": [
-        {
-          "name": "action",
-          "type": "bytes32"
-        },
-        {
-          "name": "ticketXid",
-          "type": "bytes32"
-        },
-        {
-          "name": "bearer",
-          "type": "address"
-        },
-        {
-          "name": "info",
-          "type": "string"
-        }
-      ],
-      "name": "handlePtlAction",
-      "outputs": [
-        {
-          "name": "",
-          "type": "bool"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "nonpayable",
       "type": "function"
     },
     {
@@ -560,10 +560,53 @@
         {
           "name": "",
           "type": "string"
+        },
+        {
+          "name": "",
+          "type": "bool"
+        },
+        {
+          "name": "",
+          "type": "uint256"
         }
       ],
       "payable": false,
       "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "action",
+          "type": "bytes32"
+        },
+        {
+          "name": "ticketXid",
+          "type": "bytes32"
+        },
+        {
+          "name": "bearer",
+          "type": "address"
+        },
+        {
+          "name": "info",
+          "type": "string"
+        },
+        {
+          "name": "txnDate",
+          "type": "uint256"
+        }
+      ],
+      "name": "handlePtlAction",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
       "type": "function"
     },
     {
@@ -595,6 +638,14 @@
         {
           "name": "exists",
           "type": "bool"
+        },
+        {
+          "name": "listed",
+          "type": "bool"
+        },
+        {
+          "name": "lastTxnDate",
+          "type": "uint256"
         }
       ],
       "payable": false,
@@ -613,6 +664,25 @@
       "outputs": [],
       "payable": false,
       "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "ticketXid",
+          "type": "bytes32"
+        }
+      ],
+      "name": "checkTicketIsListed",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
       "type": "function"
     },
     {

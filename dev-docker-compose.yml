@@ -5,8 +5,8 @@ services:
     build: .
     image: explorer
     ports:
-      - "3000:3000"
-    command: ["npm", "start"]
+      - "4000:3000"
+    command: ["npm", "run", "dev-start"]
     volumes:
      - ./views:/explorer/views
      - ./public:/explorer/public
