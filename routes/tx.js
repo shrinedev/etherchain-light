@@ -112,12 +112,14 @@ router.get('/:tx', function(req, res, next) {
         callback(err, result);
       });
     }, function(tx, callback) {
-      if(tx.to){
+      if(tx && tx.to){
         db.get(tx.to, function(err, value) {
           callback(null, tx, value);
         });
-      } else {
+      } else if (tx) {
         callback(null, tx, null);
+      } else {
+        callback(new Error("Transaction not found", null, null));
       }
     }
   ], function(err, tx, source) {

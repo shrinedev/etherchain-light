@@ -9,6 +9,7 @@ services:
     command: ["npm", "start"]
     volumes:
       - data-volume:/data-volume
+    restart: always
 
 volumes:
    data-volume:
